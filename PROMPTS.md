@@ -23,3 +23,43 @@ No errors. Copilot created one extra file for the loading page. The only thing I
 ### Reflection
 > Copilot being able to have access to your files right away feels awesome. I feel like there are less errors this way 
 since it can see how your entire code actually works and not just one file. I didn't expect it to be so quick with responses. Maybe next time I can ask for the AI to give me the exact file and line it added changes for things that are more so for preference like the time of the loading screen or transition.
+
+## Activity 2: Building the Dashboard Shell
+
+### Prompt 1
+**What I asked:**
+Using the shadcn sidebar components that are now in my src/components/ui/ folder,
+create a professional, collapsible dashboard layout. It should include:
+
+1. A sidebar (src/components/app-sidebar.tsx) with navigation links for:
+   - Overview (use the Home icon from lucide-react)
+   - Projects (use the FolderOpen icon)
+   - Settings (use the Settings icon)
+
+2. A top navigation area with breadcrumbs showing the current page.
+
+3. A main content area that wraps the existing page content.
+
+4. Update src/app/layout.tsx to use the new SidebarProvider and sidebar layout.
+
+Important: Preserve the Developer Profile content from Activity 1 in
+src/app/page.tsx — it should appear in the main content area of the new layout.
+Keep the dark mode toggle working.
+
+**What happened:**
+> Everything went smoothly. Copilot...
+1. Added a new app sidebar component with required nav links/icons
+2. Added a top navigation component
+3. Updated root layout to use shadcn sidebar shell
+4. Preserved Developer Profile content
+
+### Prompt 2
+**What I asked:**
+> When I collapse the sidebar on computer screen it leaves the "ITDEV-164 Dashboard" slightly on the sidebar and cutoff. Could you fox it to were you don't see it at all or so it isn't cutoff.
+
+**What happened:**
+> Yes the agent fixed this first try and removed the header for the sidebar when collapsed. It added overflow protection on the header container and wrapped the title in a span that is hidden in icon-collapsed mode using group-data state classes.
+
+### Reflection
+> N/A
+> The agent listens when telling it to preserve certain files or area of a file.
