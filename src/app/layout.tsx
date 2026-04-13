@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Geist } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Header } from "@/components/header";
+import { AppSidebar } from "@/components/app-sidebar";
+import { DashboardTopNav } from "@/components/dashboard-top-nav";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import "./globals.css";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const inter = Inter({
   variable: "--font-inter",
@@ -20,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={cn("font-sans", geist.variable)}>
       <body className={`${inter.variable} font-sans antialiased`}>
         <ThemeProvider
           attribute="class"
@@ -28,8 +33,13 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Header />
-          <main className="mx-auto max-w-5xl px-4 py-8">{children}</main>
+          <SidebarProvider>
+            <AppSidebar />
+            <SidebarInset>
+              <DashboardTopNav />
+              <main className="flex-1 px-4 py-6 lg:px-6">{children}</main>
+            </SidebarInset>
+          </SidebarProvider>
         </ThemeProvider>
       </body>
     </html>
