@@ -63,3 +63,45 @@ Keep the dark mode toggle working.
 ### Reflection
 > N/A
 > The agent listens when telling it to preserve certain files or area of a file.
+
+## Activity 3: Server-Side Data with Supabase
+
+### Prompt 1
+
+**What I asked:**
+
+> Using the Supabase client at src/lib/supabase.ts, create a new Server Component
+at src/app/projects/page.tsx that:
+
+Fetches all records from the "projects" table in Supabase
+Displays them in a professional layout using shadcn/ui Card components
+(run npx shadcn@latest add card if needed)
+Each card should show the project title, description, and a status badge
+The status badge should be color-coded:
+"active" = green
+"completed" = blue
+"archived" = gray
+Use @workspace context to match the styling of our existing Dashboard.
+This must be a React Server Component (async function, no "use client").
+Do NOT use useEffect or useState for data fetching.
+
+**What happened:**
+
+> Server Component was created
+> No corrections needed
+
+### Prompt 2
+
+**What I asked:**
+
+> Getting errors here...import { SidebarTrigger, SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import "./globals.css";
+
+**What happened:**
+
+> Fixed duplicate error
+
+### Reflection
+
+> Fetching data on the server feels simpler than using useEffect because the data is already ready when the page loads, instead of loading after render. It’s faster and cleaner, and it was surprising how little code is needed in the App Router to make it work.
