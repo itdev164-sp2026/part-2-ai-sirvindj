@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Inter, Geist } from "next/font/google";
+import { BreadcrumbNav } from "@/components/breadcrumb-nav";
+import { ModeToggle } from "@/components/mode-toggle";
 import { ThemeProvider } from "@/components/theme-provider";
 import { AppSidebar } from "@/components/app-sidebar";
-import { DashboardTopNav } from "@/components/dashboard-top-nav";
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { Separator } from "@/components/ui/separator";
+import { SidebarTrigger, SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
@@ -36,7 +38,14 @@ export default function RootLayout({
           <SidebarProvider>
             <AppSidebar />
             <SidebarInset>
-              <DashboardTopNav />
+              <header className="sticky top-0 z-20 flex h-14 shrink-0 items-center gap-2 border-b bg-background/95 px-4 backdrop-blur supports-[backdrop-filter]:bg-background/70">
+                <SidebarTrigger className="-ml-1" />
+                <Separator orientation="vertical" className="mr-2 h-4" />
+                <BreadcrumbNav />
+                <div className="ml-auto">
+                  <ModeToggle />
+                </div>
+              </header>
               <main className="flex-1 px-4 py-6 lg:px-6">{children}</main>
             </SidebarInset>
           </SidebarProvider>
