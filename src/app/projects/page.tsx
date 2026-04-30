@@ -1,5 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import { supabase } from "@/lib/supabase";
 import { cn } from "@/lib/utils";
 
@@ -47,6 +49,11 @@ export default async function ProjectsPage() {
           <p className="max-w-2xl text-muted-foreground">
             A server-rendered overview of the current portfolio work, styled to match the rest of the dashboard.
           </p>
+          <div className="pt-2">
+            <Button asChild>
+              <Link href="/projects/new">New Project</Link>
+            </Button>
+          </div>
         </div>
       </section>
 

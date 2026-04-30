@@ -105,3 +105,73 @@ import "./globals.css";
 ### Reflection
 
 > Fetching data on the server feels simpler than using useEffect because the data is already ready when the page loads, instead of loading after render. It’s faster and cleaner, and it was surprising how little code is needed in the App Router to make it work.
+
+## Activity 4: AI-Driven Forms & Validation
+
+### Prompt 1
+
+**What I asked:**
+
+> Create a Zod validation schema in a new file src/lib/schemas.ts for a "Project"
+with the following fields:
+
+title: string, minimum 3 characters, with a custom error message
+"Title must be at least 3 characters"
+description: string, minimum 10 characters, with a custom error message
+"Description must be at least 10 characters"
+status: enum with values "active", "completed", "archived"
+Export the schema and also export the inferred TypeScript type using z.infer.
+
+**What happened:**
+
+> Yes, the Agent created the Zod schema correctly and exported both the schema and the inferred TypeScript type using z.infer.
+
+### Prompt 2
+
+**What I asked:**
+
+> Using the Zod schema from src/lib/schemas.ts, do the following:
+
+1. Create a form component at src/components/project-form.tsx that:
+   - Is a Client Component ("use client") because it uses react-hook-form hooks
+   - Uses react-hook-form with the zodResolver from @hookform/resolvers for validation
+   - Uses shadcn/ui Field, FieldLabel, and FieldError for field layout
+   - Uses shadcn/ui Input for title, Textarea for description, and Select for status
+   - Shows inline error messages under each field when validation fails
+   - Has a "Create Project" submit button
+   - Shows a sonner toast notification on successful submission
+
+2. Create a Server Action at src/app/actions.ts that:
+   - Has "use server" at the top of the file
+   - Accepts the validated form data
+   - Validates it again with the Zod schema (server-side validation)
+   - Inserts the validated data into the Supabase "projects" table
+   - Returns a success or error response
+
+3. Create a new page at src/app/projects/new/page.tsx that renders
+   the project form within the dashboard layout.
+
+4. Add a "New Project" button to the existing projects page
+   (src/app/projects/page.tsx) that links to /projects/new.
+
+Use @workspace to match the existing project styling.
+
+**What happened:**
+
+> The Agent created multiple files successfully and connected the form submission to the createProject Server Action. It also included server-side Zod validation before inserting the data into Supabase.
+
+### Prompt 3 (if applicable)
+
+**What I asked:**
+
+> n/a
+
+**What happened:**
+
+> n/a
+
+### Reflection
+
+> Using Zod first makes the form rules clear before building the form. It helps stop junk data because invalid titles, descriptions, or statuses are rejected before they reach the database.
+
+Compared to previous courses, this feels more organized because validation is handled in one shared schema instead of being scattered across form code.
