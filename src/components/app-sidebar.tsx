@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FolderOpen, Home, Settings } from "lucide-react";
+import { LogOut } from "lucide-react";
+import { signOut } from "@/app/actions";
 import {
   Sidebar,
   SidebarContent,
@@ -21,7 +23,7 @@ const navItems = [
   { title: "Settings", href: "/settings", icon: Settings },
 ];
 
-export function AppSidebar() {
+export function AppSidebar({ user }: { user: any | null }) {
   const pathname = usePathname();
 
   return (
@@ -32,7 +34,7 @@ export function AppSidebar() {
         </div>
       </SidebarHeader>
 
-      <SidebarContent>
+          <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>Navigation</SidebarGroupLabel>
           <SidebarGroupContent>
@@ -57,6 +59,25 @@ export function AppSidebar() {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
+            {user ? (
+              <SidebarGroup>
+                <SidebarGroupLabel>Account</SidebarGroupLabel>
+                <SidebarGroupContent>
+                  <SidebarMenu>
+                    <SidebarMenuItem>
+                      <form action={signOut}>
+                        <SidebarMenuButton asChild tooltip="Sign Out">
+                          <button type="submit">
+                            <LogOut />
+                            <span>Sign Out</span>
+                          </button>
+                        </SidebarMenuButton>
+                      </form>
+                    </SidebarMenuItem>
+                  </SidebarMenu>
+                </SidebarGroupContent>
+              </SidebarGroup>
+            ) : null}
       </SidebarContent>
     </Sidebar>
   );

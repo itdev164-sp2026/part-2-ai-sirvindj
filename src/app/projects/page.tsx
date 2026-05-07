@@ -2,7 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { supabase } from "@/lib/supabase";
+import { createServerComponentSupabase } from "@/lib/supabase/clients";
 import { cn } from "@/lib/utils";
 
 type Project = {
@@ -27,10 +27,8 @@ function getStatusClassName(status: string | null | undefined) {
 }
 
 export default async function ProjectsPage() {
-  const { data, error } = await supabase
-    .from("projects")
-    .select("*")
-    .order("title", { ascending: true });
+  const supabase = await createServerComponentSupabase();
+  const { data, error } = await supabase.from("projects").select("*").order("title", { ascending: true });
 
   if (error) {
     throw new Error(`Failed to load projects: ${error.message}`);

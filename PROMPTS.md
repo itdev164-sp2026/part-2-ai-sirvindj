@@ -175,3 +175,30 @@ Use @workspace to match the existing project styling.
 > Using Zod first makes the form rules clear before building the form. It helps stop junk data because invalid titles, descriptions, or statuses are rejected before they reach the database.
 
 Compared to previous courses, this feels more organized because validation is handled in one shared schema instead of being scattered across form code.
+
+## Activity 5: Securing the App with Supabase Auth
+
+### Prompt 1
+
+**What I asked:**
+
+> Implement a complete email/password authentication flow for this Next.js 15
+App Router project using @supabase/ssr. Here is what I need:......
+
+**What happened:**
+
+> The Agent modified several parts of the app at once. It created Supabase auth client utilities, added the login page, created middleware.ts, added sign out functionality to the sidebar, updated the root layout to pass the user, and changed project queries/actions to use the authenticated user. It handled middleware, login, sign out, and data scoping mostly in one pass.
+
+### Prompt 2
+
+**What I asked:**
+
+> n/a
+
+**What happened:**
+
+> n/a
+
+### Reflection
+
+> The Agent handled middleware.ts well, but I had to be careful that it was created in the correct location: src/middleware.ts, next to the app directory. I learned that authentication affects more files than I expected because it touches routing, layouts, UI, server actions, database queries, and middleware. Middleware-based auth is cleaner than checking login status inside every page because it protects routes before the page loads. Checking inside each page component would be more repetitive and easier to forget.
