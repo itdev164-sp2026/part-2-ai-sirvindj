@@ -12,7 +12,6 @@ export default function NewProjectPage() {
       </section>
 
       <section className="max-w-3xl">
-        {/* @ts-expect-error Server component importing client form */}
         <ProjectForm />
       </section>
     </div>

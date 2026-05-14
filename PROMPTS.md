@@ -202,3 +202,58 @@ App Router project using @supabase/ssr. Here is what I need:......
 ### Reflection
 
 > The Agent handled middleware.ts well, but I had to be careful that it was created in the correct location: src/middleware.ts, next to the app directory. I learned that authentication affects more files than I expected because it touches routing, layouts, UI, server actions, database queries, and middleware. Middleware-based auth is cleaner than checking login status inside every page because it protects routes before the page loads. Checking inside each page component would be more repetitive and easier to forget.
+
+## Activity 6: Deployment, Webhooks, & AI-Testing
+
+### Prompt 1
+
+**What I asked:**
+
+> I have a Next.js app with Supabase Auth. Using @workspace context to
+understand the app structure, write an End-to-End (E2E) test file at
+tests/auth.spec.ts using Playwright.
+
+The tests should verify:
+
+1. LOGIN PAGE VISIBLE: Navigate to /login and confirm the login form
+   is visible (check for email input, password input, and submit button).
+
+2. REDIRECT AFTER LOGIN: After a successful login with valid credentials,
+   the user is redirected to the dashboard or projects page.
+
+3. SIDEBAR NAVIGATION: After login, verify that the sidebar navigation
+   links are visible: "Overview", "Projects", and "Settings".
+
+Requirements:
+- Use role-based locators (getByRole, getByLabel, getByText) instead of
+  CSS selectors or test IDs. This makes tests more accessible and resilient
+  to UI changes.
+- Add clear test descriptions that explain what each test verifies.
+- Handle the async nature of navigation and page loads with proper
+  Playwright waiting strategies.
+- Read test credentials from process.env.TEST_USER_EMAIL and
+  process.env.TEST_USER_PASSWORD. Do not hardcode credentials. If those
+  variables are not set, the credentialed tests should skip with a clear
+  message rather than fail.
+
+**What happened:**
+
+> The Agent used role-based locators like getByRole and getByLabel and correctly understood the login flow and redirect to /projects. The tests did not fully pass on the first run because of selector collisions and accessibility label issues, but the overall structure was generated correctly.
+
+### Prompt 2
+
+**What I asked:**
+
+> Fix the failing Playwright tests by resolving selector collisions and improving the sidebar assertions while still using accessible role-based locators.
+
+**What happened:**
+
+> It took a few rounds to fully pass the tests because the “Projects” breadcrumb conflicted with the sidebar link locator. The Agent updated the locators to target the correct links and all tests passed after the final adjustments.
+
+### Reflection
+
+> Having AI generate and run tests increased my confidence before deploying because it automatically checked important login and navigation flows. The Agent also caught accessibility and selector issues that I probably would not have noticed during quick manual testing.
+
+### Course Reflection
+
+> My prompting became much more specific and structured compared to Activity 1, especially when describing requirements, expected behavior, and edge cases. The biggest thing I learned is that AI coding tools work best when prompts clearly explain the app structure, constraints, and exact goals instead of asking broad questions.

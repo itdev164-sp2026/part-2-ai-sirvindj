@@ -1,3 +1,7 @@
+## Live Site
+
+Deployed at: [part-2-ai-sirvindj](https://part-2-ai-sirvindj.vercel.app)
+
 # ITDEV-164 — Web Programming 2
 
 AI-native full-stack development with Next.js, Tailwind CSS, and Supabase.
